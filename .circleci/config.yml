@@ -30,11 +30,18 @@ jobs:
           else
             echo "Nope!"; exit 1
           fi
+  three:
+    docker:
+      - image: circleci/ruby:2.4.1
+    steps:
+      - checkout
+      - run: echo "Added a third step"  
 workflows:
   version: 2
-  one_and_two:
+  one_and_two_and_three:
     jobs:
       - one
       - two:
           requires:
             - one
+      - three
